@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>One Month With You 🤍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241019;
+    --rosewood:#5c2334;
+    --blush:#f6dce0;
+    --paper:#f8efdf;
+    --accent:#d6455d;
+    --accent-dark:#b8324a;
+    --gold:#e3ab63;
+    --cream:#fbf1e4;
+    --ink-soft:rgba(36,16,25,0.62);
+    --shadow:0 22px 46px rgba(15,6,10,0.42);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:linear-gradient(180deg,#241019 0%,#3c1826 45%,#5c2334 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2{
+    font-family:'Fraunces',Georgia,'Times New Roman',serif;
+    font-optical-sizing:auto;
+    margin:0;
+  }
+  .handwritten{ font-family:'Caveat',cursive; font-weight:600; }
+  img{ max-width:100%; display:block; }
+
+  /* ambient background hearts */
+  #bgDrift{ position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+  .drift-heart{ position:absolute; bottom:-8%; will-change:transform,opacity; animation:drift-up linear infinite; }
+  @keyframes drift-up{
+    0%{ transform:translate(0,0); opacity:0; }
+    8%{ opacity:var(--o,0.5); }
+    92%{ opacity:var(--o,0.5); }
+    100%{ transform:translate(var(--sway,20px),-112vh); opacity:0; }
+  }
+
+  .hero,.section,footer.footer{ position:relative; z-index:1; }
+
+  .section{
+    max-width:680px; margin:0 auto; padding:4.5rem 1.25rem;
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:1.5rem;
+  }
+  .section h2{
+    font-size:clamp(1.6rem,4.6vw,2.3rem); font-weight:600; color:var(--cream); line-height:1.18;
+  }
+  .surface{
+    background:var(--paper); color:var(--ink); border-radius:20px; box-shadow:var(--shadow);
+    padding:2rem 1.5rem; width:100%;
+  }
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:3rem 1.25rem; gap:1.6rem;
+  }
+  .postmark{ width:min(44vw,180px); color:var(--gold); opacity:0.92; }
+  .hero h1{
+    font-size:clamp(2.3rem,7.2vw,4rem); font-weight:600; color:var(--cream);
+    line-height:1.08; letter-spacing:-0.01em; max-width:14ch;
+  }
+  .hero p{
+    color:rgba(251,241,228,0.78); font-size:clamp(1rem,2.4vw,1.15rem);
+    max-width:34ch; line-height:1.6; margin:0;
+  }
+  .scroll-cue{
+    background:none; border:none; color:var(--cream); opacity:0.65; cursor:pointer;
+    padding:0.75rem; margin-top:0.75rem; animation:bob 2.6s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+
+  /* ---------- TICKET / COUNTER ---------- */
+  .ticket{ position:relative; max-width:420px; }
+  .ticket::before,.ticket::after{
+    content:''; position:absolute; top:50%; width:26px; height:26px; background:var(--rosewood);
+    border-radius:50%; transform:translateY(-50%);
+  }
+  .ticket::before{ left:-13px; }
+  .ticket::after{ right:-13px; }
+  .ticket-row{ display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .ticket-row > div{ display:flex; flex-direction:column; gap:0.2rem; }
+  .ticket-label{ font-size:0.68rem; letter-spacing:0.14em; color:var(--ink-soft); }
+  .ticket-city{ font-family:'Fraunces',serif; font-size:1.25rem; font-weight:600; }
+  .ticket-heart{ color:var(--accent); font-size:1.1rem; }
+  .ticket-divider{ border-top:1.5px dashed rgba(36,16,25,0.25); margin:1.25rem 0; }
+  .ticket-caption{ font-family:'Caveat',cursive; font-size:1.3rem; color:var(--ink-soft); margin:0 0 0.75rem; }
+  .counter{ display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; }
+  .counter-unit{ display:flex; flex-direction:column; align-items:center; }
+  .counter-unit span{
+    font-family:'Fraunces',serif; font-variant-numeric:tabular-nums;
+    font-size:clamp(1.4rem,6vw,2.1rem); font-weight:600; color:var(--accent-dark);
+  }
+  .counter-unit small{ font-size:0.68rem; color:var(--ink-soft); letter-spacing:0.05em; margin-top:0.1rem; }
+  .ticket-since{ margin:1.25rem 0 0; font-size:0.85rem; color:var(--ink-soft); }
+
+  /* ---------- FIRST TEXT ---------- */
+  .notif-card{ max-width:360px; text-align:left; }
+  .notif-top{ display:flex; justify-content:space-between; font-size:0.75rem; color:var(--ink-soft); margin-bottom:0.6rem; }
+  .notif-text{ font-size:1.15rem; font-weight:500; margin:0; }
+  .msg-caption{ font-family:'Caveat',cursive; font-size:1.4rem; color:var(--cream); max-width:30ch; margin:0; }
+
+  /* ---------- ALBUM ---------- */
+  .album-section{ padding-left:0; padding-right:0; }
+  .album{
+    width:100%; display:flex; gap:1.1rem; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:0.5rem 22vw 1.25rem; -webkit-overflow-scrolling:touch;
+  }
+  .album::-webkit-scrollbar{ display:none; }
+  .polaroid{
+    scroll-snap-align:center; flex:0 0 auto; width:min(64vw,240px);
+    background:var(--paper); border-radius:6px; padding:0.7rem 0.7rem 1.1rem;
+    box-shadow:var(--shadow); transform:rotate(var(--rot,-2deg)) scale(0.93); opacity:0.7;
+    transition:transform 0.35s ease, opacity 0.35s ease;
+  }
+  .polaroid.is-active{ transform:rotate(0deg) scale(1.04); opacity:1; }
+  .polaroid:nth-child(4n+1){ --rot:-2.5deg; }
+  .polaroid:nth-child(4n+2){ --rot:2deg; }
+  .polaroid:nth-child(4n+3){ --rot:-1.5deg; }
+  .polaroid:nth-child(4n+4){ --rot:2.5deg; }
+  .polaroid-photo{
+    aspect-ratio:1; border-radius:2px; display:flex; align-items:center; justify-content:center;
+    font-size:2.75rem; margin-bottom:0.85rem;
+  }
+  .polaroid:nth-child(4n+1) .polaroid-photo{ background:#f6dce0; }
+  .polaroid:nth-child(4n+2) .polaroid-photo{ background:#f3e2c6; }
+  .polaroid:nth-child(4n+3) .polaroid-photo{ background:#e9ccd3; }
+  .polaroid:nth-child(4n+4) .polaroid-photo{ background:#f0e0b8; }
+  .polaroid-tag{ font-size:0.68rem; color:var(--ink-soft); margin:0 0 0.3rem; }
+  .polaroid-caption{ font-family:'Caveat',cursive; font-size:1.2rem; line-height:1.28; margin:0; color:var(--ink); }
+  .album-controls{ display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:0.25rem; }
+  .album-btn{
+    width:40px; height:40px; border-radius:50%; border:1.5px solid rgba(251,241,228,0.4); background:none;
+    color:var(--cream); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .album-btn:hover{ background:rgba(251,241,228,0.12); }
+  .album-dots{ display:flex; gap:0.4rem; }
+  .album-dots button{ width:7px; height:7px; border-radius:50%; border:none; background:rgba(251,241,228,0.3); padding:0; cursor:pointer; }
+  .album-dots button.is-active{ background:var(--gold); width:18px; border-radius:4px; transition:width 0.25s ease; }
+
+  /* ---------- MOOD ---------- */
+  .mood-toggle{ display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; max-width:420px; }
+  .mood-chip{
+    border:1.5px solid rgba(251,241,228,0.35); background:none; color:var(--cream); padding:0.5rem 0.9rem;
+    border-radius:999px; font-size:0.88rem; cursor:pointer; display:flex; align-items:center; gap:0.4rem;
+  }
+  .mood-chip.is-active{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .phone-mock{ width:min(82vw,290px); background:var(--ink); border-radius:32px; padding:0.9rem 0.7rem; box-shadow:var(--shadow); }
+  .phone-notch{ width:64px; height:6px; background:rgba(251,241,228,0.2); border-radius:4px; margin:0 auto 0.7rem; }
+  .phone-screen{ background:var(--paper); border-radius:20px; padding:1rem 0.85rem; min-height:180px; display:flex; flex-direction:column; gap:0.55rem; }
+  .bubble{ max-width:82%; padding:0.55rem 0.8rem; border-radius:14px; font-size:0.86rem; line-height:1.4; text-align:left; }
+  .bubble.her{ align-self:flex-start; background:#eadfe4; border-bottom-left-radius:4px; }
+  .bubble.him{ align-self:flex-end; background:var(--accent); color:#fff; border-bottom-right-radius:4px; }
+  .mood-caption{ font-family:'Caveat',cursive; font-size:1.35rem; color:var(--cream); max-width:28ch; margin:0; }
+
+  /* ---------- MAP ---------- */
+  .route-card{ max-width:460px; }
+  .route-names{ display:flex; align-items:center; justify-content:space-between; width:100%; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-bottom:0.9rem; }
+  .route-dash{ color:var(--ink-soft); font-weight:400; font-size:0.85rem; letter-spacing:0.1em; }
+  .route-visual{ position:relative; }
+  .route-svg{ width:100%; height:auto; color:var(--ink-soft); display:block; }
+  .pin{
+    position:absolute; top:37%; right:9%; transform:translate(50%,-50%); width:20px; height:20px;
+    border-radius:50%; background:var(--accent); border:3px solid var(--paper); cursor:pointer; padding:0;
+  }
+  .pin::before{
+    content:''; position:absolute; inset:-9px; border-radius:50%; border:2px solid var(--accent); opacity:0.6;
+    animation:ping 2s ease-out infinite;
+  }
+  @keyframes ping{ 0%{ transform:scale(0.6); opacity:0.7; } 100%{ transform:scale(2.2); opacity:0; } }
+  .pin-popup{
+    position:absolute; top:2%; right:0; max-width:190px; background:var(--ink); color:var(--cream);
+    padding:0.75rem 0.9rem; border-radius:12px; font-size:0.83rem; line-height:1.4; box-shadow:var(--shadow);
+    opacity:0; transform:translateY(6px) scale(0.96); pointer-events:none; transition:all 0.2s ease; text-align:left;
+  }
+  .pin-popup.is-open{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .route-hint{ font-size:0.78rem; color:var(--ink-soft); margin:0.9rem 0 0; }
+
+  /* ---------- CLOSING ---------- */
+  .closing-section{ min-height:36vh; justify-content:center; }
+  .closing-line{ font-family:'Fraunces',serif; font-size:clamp(1.3rem,4vw,1.8rem); color:var(--cream); max-width:18ch; margin:0; }
+
+  .footer{ text-align:center; padding:2rem 1.25rem 5rem; color:var(--cream); }
+  .footer .sign{ font-family:'Caveat',cursive; font-size:2rem; color:var(--gold); }
+
+  /* ---------- TYPING BUBBLE EASTER EGG ---------- */
+  .typing-bubble{
+    position:fixed; right:1rem; bottom:1rem; z-index:5; max-width:min(76vw,290px);
+    background:var(--paper); border-radius:18px 18px 4px 18px; box-shadow:var(--shadow);
+    padding:0.7rem 0.9rem; display:flex; align-items:center; gap:0.55rem; border:none; cursor:pointer;
+    opacity:0; transform:translateY(14px); pointer-events:none; transition:opacity 0.4s ease, transform 0.4s ease;
+    text-align:left;
+  }
+  .typing-bubble.is-visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .typing-dots{ display:flex; gap:3px; flex-shrink:0; }
+  .typing-dots span{ width:6px; height:6px; border-radius:50%; background:var(--ink-soft); animation:bounce 1.2s infinite ease-in-out; }
+  .typing-dots span:nth-child(2){ animation-delay:0.15s; }
+  .typing-dots span:nth-child(3){ animation-delay:0.3s; }
+  @keyframes bounce{ 0%,60%,100%{ transform:translateY(0); opacity:0.5; } 30%{ transform:translateY(-4px); opacity:1; } }
+  .typing-text{ font-size:0.78rem; color:var(--ink); line-height:1.3; }
+
+  /* ---------- LETTER OVERLAY ---------- */
+  .letter-overlay{
+    position:fixed; inset:0; background:rgba(20,9,14,0.75); backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center; padding:1.5rem; z-index:10;
+    opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+  }
+  .letter-overlay.is-open{ opacity:1; pointer-events:auto; }
+  .letter-card{
+    position:relative; max-width:460px; max-height:82vh; overflow-y:auto; background:var(--paper);
+    border-radius:14px; padding:2.4rem 2rem 2rem; box-shadow:0 30px 60px rgba(0,0,0,0.5);
+    transform:translateY(16px) scale(0.97); transition:transform 0.3s ease;
+  }
+  .letter-overlay.is-open .letter-card{ transform:translateY(0) scale(1); }
+  .letter-close{ position:absolute; top:0.65rem; right:0.9rem; background:none; border:none; font-size:1.6rem; color:var(--ink-soft); cursor:pointer; line-height:1; }
+  .letter-body p{ font-size:1rem; line-height:1.75; margin:0 0 1.1rem; }
+  .letter-sign{ font-family:'Caveat',cursive; font-size:1.7rem; color:var(--accent-dark); display:block; margin-top:0.5rem; }
+
+  @media (max-width:480px){
+    .section{ padding:3.25rem 1rem; }
+    .pin-popup{ max-width:160px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="bgDrift" aria-hidden="true"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="postmark" viewBox="0 0 200 200" aria-hidden="true">
+    <defs><path id="postmarkPath" d="M100,20 a80,80 0 1,1 -0.1,0" /></defs>
+    <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+    <circle cx="100" cy="100" r="62" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+    <text font-size="9.5" letter-spacing="3" fill="currentColor" opacity="0.85">
+      <textPath href="#postmarkPath">SURABAYA • BANDUNG • SURABAYA • BANDUNG •</textPath>
+    </text>
+    <text x="100" y="97" text-anchor="middle" font-family="Fraunces, serif" font-size="20" fill="currentColor">04.08</text>
+    <text x="100" y="118" text-anchor="middle" font-size="10" letter-spacing="4" fill="currentColor" opacity="0.85">2026</text>
+  </svg>
+  <h1>One Month Down,<br>Forever To Go</h1>
+  <p>For sayang — my favorite person to text, call, and cross an island for.</p>
+  <button class="scroll-cue" id="scrollCue" aria-label="Scroll down">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+</section>
+
+<!-- TICKET / COUNTER -->
+<section class="section">
+  <div class="ticket surface">
+    <div class="ticket-row">
+      <div><span class="ticket-label">FROM</span><span class="ticket-city">Surabaya</span></div>
+      <div class="ticket-heart">❤</div>
+      <div><span class="ticket-label">TO</span><span class="ticket-city">Bandung</span></div>
+    </div>
+    <div class="ticket-divider"></div>
+    <p class="ticket-caption">time we've officially been ours</p>
+    <div class="counter">
+      <div class="counter-unit"><span id="cd">00</span><small>days</small></div>
+      <div class="counter-unit"><span id="ch">00</span><small>hrs</small></div>
+      <div class="counter-unit"><span id="cm">00</span><small>min</small></div>
+      <div class="counter-unit"><span id="cs">00</span><small>sec</small></div>
+    </div>
+    <p class="ticket-since">and counting, since August 4th, 2026</p>
+  </div>
+</section>
+
+<!-- FIRST TEXT -->
+<section class="section">
+  <h2>Where It Started</h2>
+  <div class="notif-card surface">
+    <div class="notif-top"><span>Messages</span><span>Aug 4</span></div>
+    <p class="notif-text">"Hey, are you still in class?"</p>
+  </div>
+  <p class="msg-caption">Four words in, and I was already hoping you'd text again.</p>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section album-section">
+  <h2>Our First Month, One Polaroid at a Time</h2>
+  <div class="album" id="album">
+    <div class="polaroid">
+      <div class="polaroid-photo">✨</div>
+      <p class="polaroid-tag">Memory 1 of 8</p>
+      <p class="polaroid-caption">The first time I saw you — I had no clue you'd become the person I text every single day.</p>
+    </div>
+    <div class="polaroid">
+      <div class="polaroid-photo">🏀</div>
+      <p class="polaroid-tag">Memory 2 of 8</p>
+      <p class="polaroid-caption">You texted me mid-game, and I completely lost track of the score after that.</p>
+    </div>
+    <div class="polaroid">
+      <div class="polaroid-photo">🌙</div>
+      <p class="polaroid-tag">Memory 3 of 8</p>
+      <p class="polaroid-caption">We kept saying "five more minutes" until the sun almost came up.</p>
+    </div>
+    <div class="polaroid">
+      <div class="polaroid-photo">💗</div>
+      <p class="polaroid-tag">Memory 4 of 8</p>
+      <p class="polaroid-caption">Somewhere in one of our late-night calls, it hit me — I did not want a single day without you.</p>
+    </div>
+    <div class="polaroid">
+      <div class="polaroid-photo">🎬</div>
+      <p class="polaroid-tag">Memory 5 of 8</p>
+      <p class="polaroid-caption">Popcorn, a movie I couldn't tell you a thing about, and you right next to me.</p>
+    </div>
+    <div class="polaroid">
+      <div class="polaroid-photo">☕</div>
+      <p class="polaroid-tag">Memory 6 of 8</p>
+      <p class="polaroid-caption">Over coffee, we stopped pretending — and you officially became mine.</p>
+    </div>
+    <div class="polaroid">
+      <div class="polaroid-photo">🦋</div>
+      <p class="polaroid-tag">Memory 7 of 8</p>
+      <p class="polaroid-caption">You still make my stomach flip a little, even now. I hope that never stops.</p>
+    </div>
+    <div class="polaroid">
+      <div class="polaroid-photo">🚆</div>
+      <p class="polaroid-tag">Memory 8 of 8</p>
+      <p class="polaroid-caption">Surabaya to Bandung, hours of travel, for a few days that made the distance feel worth it.</p>
+    </div>
+  </div>
+  <div class="album-controls">
+    <button class="album-btn" id="prevCard" aria-label="Previous memory">‹</button>
+    <div class="album-dots" id="albumDots"></div>
+    <button class="album-btn" id="nextCard" aria-label="Next memory">›</button>
+  </div>
+</section>
+
+<!-- MOOD -->
+<section class="section">
+  <h2>Any Mood, Still Yours</h2>
+  <div class="mood-toggle" id="moodToggle"></div>
+  <div class="phone-mock">
+    <div class="phone-notch"></div>
+    <div class="phone-screen" id="phoneScreen"></div>
+  </div>
+  <p class="mood-caption">Happy, tired, upset, quiet — doesn't matter. I'm not going anywhere.</p>
+</section>
+
+<!-- MAP -->
+<section class="section">
+  <h2>Closing the Distance</h2>
+  <div class="route-card surface">
+    <div class="route-names">
+      <span>Surabaya</span>
+      <span class="route-dash">– – – –</span>
+      <span>Bandung</span>
+    </div>
+    <div class="route-visual">
+      <svg class="route-svg" viewBox="0 0 400 180" aria-hidden="true">
+        <path d="M40,140 Q200,20 360,68" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <circle cx="40" cy="140" r="6" style="fill:var(--rosewood)"/>
+        <circle cx="360" cy="68" r="6" style="fill:var(--accent)"/>
+        <text x="190" y="52" text-anchor="middle" font-size="20">🚆</text>
+      </svg>
+      <button class="pin" id="pinBandung" aria-label="See the Bandung moment"></button>
+      <div class="pin-popup" id="pinPopup">Hundreds of kilometers, one train ride, and finally — you, in person. Worth every hour. 🚉❤️</div>
+    </div>
+    <p class="route-hint">tap the pulsing pin</p>
+  </div>
+</section>
+
+<!-- CLOSING TRIGGER -->
+<section class="section closing-section" id="closingTrigger">
+  <p class="closing-line">That's one month. Just the first of many.</p>
+</section>
+
+<footer class="footer">
+  <p>with all my love,<br><span class="sign">Zaky</span></p>
+</footer>
+
+<!-- TYPING BUBBLE EASTER EGG -->
+<button class="typing-bubble" id="typingBubble" aria-label="Open the letter">
+  <span class="typing-dots"><span></span><span></span><span></span></span>
+  <span class="typing-text">Zaky is typing a very long paragraph about how much he loves you...</span>
+</button>
+
+<!-- LETTER OVERLAY -->
+<div class="letter-overlay" id="letterOverlay" role="dialog" aria-modal="true" aria-label="A letter for you">
+  <div class="letter-card">
+    <button class="letter-close" id="letterClose" aria-label="Close letter">×</button>
+    <div class="letter-body">
+      <p>I keep thinking about how ordinary that day felt right up until you texted me mid-game. One month later, I know the sound of your voice at 3AM when neither of us wants to hang up, the face you make right before you laugh at your own joke, and the specific kind of quiet you get when you're tired but keep typing anyway because you don't want to stop talking to me either.</p>
+      <p>I sat through an entire movie I couldn't describe a single scene from, because I was too busy being aware that you existed next to me. I took a long trip across an island just to spend a few days somehow feeling completely at home. Long distance was never the plan, but you're the first person who's made all the waiting — the slow replies, the goodnight calls that turn into 3AM calls, the ache of a video call ending — feel worth it.</p>
+      <p>One month down. I don't know how many more there'll be, but I know I want all of them. I love you on your good days, your tired days, your quiet days, and every ordinary Tuesday in between.</p>
+      <span class="letter-sign">— Zaky</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---- edit this line to change the start date/time ----
+  var START_DATE = new Date(2026,7,4,0,0,0); // August 4, 2026
+
+  // ambient hearts
+  var drift = document.getElementById('bgDrift');
+  var heartChars = ['♥','❤','♡'];
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var count = reduceMotion ? 0 : 16;
+  for(var i=0;i<count;i++){
+    var el = document.createElement('span');
+    el.className = 'drift-heart';
+    el.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
+    var size = (Math.random()*0.9+0.7).toFixed(2);
+    var left = Math.random()*100;
+    var dur = (Math.random()*10+14).toFixed(1);
+    var delay = (Math.random()*-24).toFixed(1);
+    var sway = (Math.random()*40-20).toFixed(0);
+    var opacity = (Math.random()*0.25+0.16).toFixed(2);
+    el.style.left = left+'vw';
+    el.style.fontSize = size+'rem';
+    el.style.setProperty('--sway', sway+'px');
+    el.style.setProperty('--o', opacity);
+    el.style.color = Math.random()>0.5 ? 'var(--gold)' : 'var(--accent)';
+    el.style.animationDuration = dur+'s';
+    el.style.animationDelay = delay+'s';
+    drift.appendChild(el);
+  }
+
+  // live counter
+  var cd=document.getElementById('cd'), ch=document.getElementById('ch'),
+      cm=document.getElementById('cm'), cs=document.getElementById('cs');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var diff = Math.max(0, Date.now() - START_DATE.getTime());
+    cd.textContent = pad(Math.floor(diff/86400000));
+    ch.textContent = pad(Math.floor((diff%86400000)/3600000));
+    cm.textContent = pad(Math.floor((diff%3600000)/60000));
+    cs.textContent = pad(Math.floor((diff%60000)/1000));
+  }
+  tick(); setInterval(tick,1000);
+
+  // album carousel
+  var album = document.getElementById('album');
+  var cards = Array.prototype.slice.call(album.querySelectorAll('.polaroid'));
+  var dotsWrap = document.getElementById('albumDots');
+  cards.forEach(function(c,i){
+    var dot = document.createElement('button');
+    dot.setAttribute('aria-label','Go to memory '+(i+1));
+    if(i===0) dot.classList.add('is-active');
+    dot.addEventListener('click', function(){ c.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && e.intersectionRatio > 0.6){
+        var idx = cards.indexOf(e.target);
+        cards.forEach(function(c){ c.classList.remove('is-active'); });
+        dots.forEach(function(d){ d.classList.remove('is-active'); });
+        e.target.classList.add('is-active');
+        if(dots[idx]) dots[idx].classList.add('is-active');
+      }
+    });
+  }, { root: album, threshold: [0.6] });
+  cards.forEach(function(c){ io.observe(c); });
+
+  document.getElementById('prevCard').addEventListener('click', function(){
+    var idx = cards.findIndex(function(c){ return c.classList.contains('is-active'); });
+    var target = cards[Math.max(0, idx-1)];
+    target.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  });
+  document.getElementById('nextCard').addEventListener('click', function(){
+    var idx = cards.findIndex(function(c){ return c.classList.contains('is-active'); });
+    var target = cards[Math.min(cards.length-1, idx+1)];
+    target.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  });
+
+  // mood toggle
+  var moods = [
+    { emoji:'😊', label:'Happy', her:"I'm in such a good mood today!!", him:"That's my favorite version of you. Though, fair warning, so is every other version." },
+    { emoji:'😢', label:'Sad', her:"I don't really feel like talking much today.", him:"That's okay. I'm right here anyway, for as long as you need." },
+    { emoji:'😤', label:'Annoyed', her:"kind of annoyed rn, not at you though", him:"Noted. Sending patience and snacks from 700km away." },
+    { emoji:'😴', label:'Tired', her:"so tired... 😩", him:"Then rest. I'll still be here when you wake up." },
+    { emoji:'🥹', label:'Kangen', her:"I miss you so much right now.", him:"Same. Counting the days till I see you again." }
+  ];
+  var moodToggle = document.getElementById('moodToggle');
+  var phoneScreen = document.getElementById('phoneScreen');
+  function renderMood(i){
+    phoneScreen.innerHTML =
+      '<div class="bubble her">'+moods[i].her+'</div>'+
+      '<div class="bubble him">'+moods[i].him+'</div>';
+  }
+  moods.forEach(function(m,i){
+    var btn = document.createElement('button');
+    btn.className = 'mood-chip'+(i===0?' is-active':'');
+    btn.innerHTML = '<span>'+m.emoji+'</span><span>'+m.label+'</span>';
+    btn.addEventListener('click', function(){
+      Array.prototype.forEach.call(moodToggle.children, function(c){ c.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      renderMood(i);
+    });
+    moodToggle.appendChild(btn);
+  });
+  renderMood(0);
+
+  // map pin popup
+  var pin = document.getElementById('pinBandung');
+  var popup = document.getElementById('pinPopup');
+  pin.addEventListener('click', function(){ popup.classList.toggle('is-open'); });
+
+  // typing bubble easter egg + letter
+  var typingBubble = document.getElementById('typingBubble');
+  var trigger = document.getElementById('closingTrigger');
+  var revealIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) typingBubble.classList.add('is-visible'); });
+  }, { threshold: 0.3 });
+  revealIO.observe(trigger);
+
+  var overlay = document.getElementById('letterOverlay');
+  function openLetter(){ overlay.classList.add('is-open'); }
+  function closeLetter(){ overlay.classList.remove('is-open'); }
+  typingBubble.addEventListener('click', openLetter);
+  document.getElementById('letterClose').addEventListener('click', closeLetter);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) closeLetter(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLetter(); });
+
+  // scroll cue
+  document.getElementById('scrollCue').addEventListener('click', function(){
+    document.querySelector('.section').scrollIntoView({behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+</html>
